@@ -6,8 +6,34 @@ import java.util.HashMap;
 public class Db {
     public static HashMap<String, String> m_map;
     public static ArrayList<Restaurant> restaurant_list = new ArrayList<>();
+    public static HashMap<String, User> users;
+    private static Db database;
+    public static Db getDatabase() {
+        if(database == null) {
+            database = new Db();
+        }
+        return database;
+    }
 
+    public boolean verifyUser(String username, String password) {
+        if(users.containsKey(username)) {
+            return users.get(username).password.equals(password);
+        }
+        return false;
+    }
 
+    public void addUser(String username, String password) {
+        users.put(username, new User(username,password));
+    }
+
+    public static class User {
+        User(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
+        String username, password;
+        ArrayList<Drink> orderHistory;
+    }
     public static class Drink{
         Drink(String name, double calories){
             this.name = name;
