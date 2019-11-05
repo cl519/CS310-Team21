@@ -71,13 +71,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in_short"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="VerifySignin"
+                />
 
             <Button
                 android:id="@+id/registerUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/register_as_user" />
+                android:text="@string/register_as_user"
+                android:onClick="RegisterAsCustomer"/>
+
 
             <Button
                 android:id="@+id/registerMerchant"

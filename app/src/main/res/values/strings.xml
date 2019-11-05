@@ -17,4 +17,8 @@
     <string name="register_as_merchant">Register as Merchant</string>
     <string name="register_as_user">Register as User</string>
     <string name="username">Username</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="register">Register</string>
 </resources>

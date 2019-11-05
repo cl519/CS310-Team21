@@ -43,6 +43,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name = ".RegisterCustomer"
+            android:label = "Get Customer Info">
+            <!-->android:theme = "@style/AppTheme"<!-->
+
+        </activity>
+
+        <activity android:name =".GotoProfile"
+            android:label = "Profile Info">
+
+        </activity>
+
     </application>
 
 </manifest>

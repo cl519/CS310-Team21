@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.LoaderManager.LoaderCallbacks;
 
+import android.content.Intent;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -23,6 +24,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -281,6 +283,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
+    }
+
+    public void RegisterAsCustomer(View view) {
+        System.out.println("In Register as customer");
+        Intent RegisterCustomerIntent = new Intent(this, RegisterCustomer.class);
+        //final int result = 1;
+
+        RegisterCustomerIntent.putExtra("callingActivity", "MainActivity");
+        startActivity(RegisterCustomerIntent);
+//        startActivityForResult if you want to retrieve data back with result id
+    }
+
+    public void VerifySignin(View view){
+
     }
 
 
