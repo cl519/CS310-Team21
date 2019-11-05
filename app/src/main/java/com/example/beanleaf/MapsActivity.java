@@ -11,6 +11,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -39,9 +41,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+         //Add a marker in Sydney and move the camera
+        /*
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        */
+
+        System.out.println("HELLO???????????");
+        Db.Drink dr = new Db.Drink("first_coffee", 0.5);
+        ArrayList<Db.Drink> menu = new ArrayList<>();
+        menu.add(dr);
+        Db.Restaurant dbr = new Db.Restaurant("test", 34.0197, -118.2903, menu);
+        dbr.getinfo();
+        Db.restaurant_list.add(dbr);
+
+        for(Db.Restaurant r: Db.restaurant_list){
+            LatLng latest = new LatLng(r.lat, r.longitude);
+            mMap.addMarker(new MarkerOptions()
+                    .position(latest)
+                    .title(r.name)
+                    .snippet(r.info)
+            );
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latest));
+        }
+
+
     }
 }
