@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class GotoProfile extends Activity {
 
@@ -12,6 +13,12 @@ public class GotoProfile extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.profile_layout);
+
+        Intent activityThatCalled = getIntent();
+        String logged_in_person = activityThatCalled.getExtras().getString("logged_in");
+
+        TextView tv = (TextView) findViewById(R.id.welcome_user);
+        tv.append(logged_in_person);
 
         //setContentView(R.layout.);
 

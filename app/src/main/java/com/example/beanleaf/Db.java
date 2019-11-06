@@ -5,8 +5,10 @@ import java.util.HashMap;
 
 public class Db {
     public static HashMap<String, String> m_map;
-    public static ArrayList<Restaurant> restaurant_list = new ArrayList<>();
-    public static HashMap<String, User> users;
+    //public static ArrayList<Restaurant> restaurant_list = new ArrayList<>();
+    public static HashMap<String, Restaurant> restaurant_map = new HashMap<>();
+
+    public static HashMap<String, User> users = new HashMap<>();
     private static Db database;
     public static Db getDatabase() {
         if(database == null) {
@@ -15,15 +17,15 @@ public class Db {
         return database;
     }
 
-    public boolean verifyUser(String username, String password) {
-        if(users.containsKey(username)) {
-            return users.get(username).password.equals(password);
+    public boolean verifyUser(String email, String password) {
+        if(users.containsKey(email)) {
+            return users.get(email).password.equals(password);
         }
         return false;
     }
 
-    public void addUser(String username, String password) {
-        users.put(username, new User(username,password));
+    public void addUser(String username, String password, String email) {
+        users.put(email, new User(username,password));
     }
 
     public static class User {

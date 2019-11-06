@@ -55,6 +55,11 @@
 
         </activity>
 
+        <activity android:name =".ItemPurchaseActivity"
+            android:label = "purchase items">
+
+        </activity>
+
 
     </application>
 
