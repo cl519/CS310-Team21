@@ -21,4 +21,5 @@
     <string name="enter_email">Enter Email</string>
     <string name="enter_password">Enter Password</string>
     <string name="register">Register</string>
+    <string name="enter_business">Enter Business Code</string>
 </resources>

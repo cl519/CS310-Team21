@@ -288,7 +288,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     public void RegisterAsCustomer(View view) {
-        System.out.println("In Register as customer");
         Intent RegisterCustomerIntent = new Intent(this, RegisterCustomer.class);
         //final int result = 1;
 
@@ -299,6 +298,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     public void VerifySignin(View view){
 
+    }
+
+    public void RegisterAsMerchant(View view) {
+        Intent RegisterMerchantIntent = new Intent(this, RegisterMerchant.class);
+        //final int result = 1;
+
+        RegisterMerchantIntent.putExtra("callingActivity", "MainActivity");
+        startActivity(RegisterMerchantIntent);
     }
 
 

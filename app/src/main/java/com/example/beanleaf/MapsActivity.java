@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback {
 
@@ -55,9 +56,13 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         */
 
         Db.Drink dr = new Db.Drink("first_coffee", 0.5);
-        ArrayList<Db.Drink> menu = new ArrayList<>();
-        menu.add(dr);
+        HashMap<String, Db.Drink> menu = new HashMap();
+        menu.put("first_coffee",dr);
+        System.out.println("dr: "+ dr);
+
         Db.Restaurant dbr = new Db.Restaurant("test", 34.0197, -118.2903, menu);
+        System.out.println("Restaurant: " + dbr);
+        System.out.println("menu: " + dbr.menu.get("first_coffee"));
         dbr.getinfo();
 
         Db.restaurant_map.put("test", dbr);
@@ -66,10 +71,12 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         Db.Drink dr2 = new Db.Drink("Mocha", 0.7);
         Db.Drink dr3 = new Db.Drink("Thai Tea", 0.7);
         Db.Drink dr4 = new Db.Drink("Latte", 0.7);
-        ArrayList<Db.Drink> menu2 = new ArrayList<>();
-        menu2.add(dr2);
-        menu2.add(dr3);
-        menu2.add(dr4);
+        //ArrayList<Db.Drink> menu2 = new ArrayList<>();
+        HashMap<String, Db.Drink> menu2 = new HashMap<>();
+        menu2.put("Mocha",dr2);
+        menu2.put("Thai Tea", dr3);
+        menu2.put("Latte", dr4);
+        //Db.Restaurant dbr2 = new Db.Restaurant("test2", 34.0256, -118.2859, menu2);
         Db.Restaurant dbr2 = new Db.Restaurant("test2", 34.0256, -118.2859, menu2);
         //Db.restaurant_list.add(dbr2);
         Db.restaurant_map.put("test2", dbr2);
@@ -99,6 +106,14 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         Intent ItemPurchaseIntent = new Intent(this, ItemPurchaseActivity.class);
 //        GotoProfileIntent.putExtra("logged_in", username);
         ItemPurchaseIntent.putExtra("restaurant", marker.getTitle());
+
+        Intent activityThatCalled = getIntent();
+        String logged_in_person = activityThatCalled.getExtras().getString("logged_in");
+        String email = activityThatCalled.getExtras().getString("logged_in_email");
+
+        ItemPurchaseIntent.putExtra("logged_in", logged_in_person);
+        ItemPurchaseIntent.putExtra("logged_in_email", email);
+
         startActivity(ItemPurchaseIntent);
 
 

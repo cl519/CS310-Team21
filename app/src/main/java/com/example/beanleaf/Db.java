@@ -34,8 +34,19 @@ public class Db {
             this.password = password;
         }
         String username, password;
-        ArrayList<Drink> orderHistory;
+        ArrayList<Order> orderHistory = new ArrayList<>();
     }
+
+    public static class Order{
+        Order(Drink drink, String DateTime){
+            this.drink = drink;
+            this.DateTime = DateTime;
+        }
+        Drink drink;
+        String DateTime;
+    }
+
+
     public static class Drink{
         Drink(String name, double calories){
             this.name = name;
@@ -48,10 +59,11 @@ public class Db {
         String name;
         double lat;
         double longitude;
-        ArrayList<Drink> menu;
+        //ArrayList<Drink> menu;
+        HashMap<String, Drink> menu;
         String info = new String();
 
-        public Restaurant(String name, double lat, double longitude, ArrayList<Drink> menu){
+        public Restaurant(String name, double lat, double longitude, HashMap<String, Drink> menu){
             this.name = name;
             this.lat = lat;
             this.longitude = longitude;
@@ -59,8 +71,14 @@ public class Db {
         }
 
         public void getinfo(){
+            /*
             for(int i = 0; i < menu.size(); i++){
                 info += (menu.get(i).name + "\n");
+            }
+            */
+
+            for(String s: menu.keySet()){
+                info+= (s + "\n");
             }
 
         }

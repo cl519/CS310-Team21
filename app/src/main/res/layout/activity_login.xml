@@ -87,7 +87,8 @@
                 android:id="@+id/registerMerchant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/register_as_merchant" />
+                android:text="@string/register_as_merchant"
+                android:onClick="RegisterAsMerchant"/>
 
         </LinearLayout>
     </ScrollView>
