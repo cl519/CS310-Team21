@@ -62,4 +62,10 @@ public class GotoProfile extends Activity {
         startActivity(MapsActivityIntent);
 //        startActivityForResult if you want to retrieve data back with result id
     }
+
+    public void AddBusinessActivity(View view){
+        Intent AddBusinessIntent = new Intent(this, AddBusinessActivity.class);
+
+        startActivity(AddBusinessIntent);
+    }
 }

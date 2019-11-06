@@ -17,14 +17,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback {
+public class AddBusinessActivity extends FragmentActivity implements GoogleMap.OnMarkerDragListener,GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private LatLng destLatLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.add_business);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -47,6 +48,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         mMap = googleMap;
 
         mMap.setOnInfoWindowClickListener(this);
+        mMap.setOnMarkerDragListener(this);
 
         //Add a marker in Sydney and move the camera
         /*
@@ -54,46 +56,12 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         */
-
-        Db.Drink dr = new Db.Drink("first_coffee", 0.5);
-        HashMap<String, Db.Drink> menu = new HashMap();
-        menu.put("first_coffee",dr);
-        System.out.println("dr: "+ dr);
-
-        Db.Restaurant dbr = new Db.Restaurant("test", 34.0197, -118.2903, menu);
-        System.out.println("Restaurant: " + dbr);
-        System.out.println("menu: " + dbr.menu.get("first_coffee"));
-        dbr.getinfo();
-
-        Db.restaurant_map.put("test", dbr);
-        //Db.restaurant_list.add(dbr);
-
-        Db.Drink dr2 = new Db.Drink("Mocha", 0.7);
-        Db.Drink dr3 = new Db.Drink("Thai Tea", 0.7);
-        Db.Drink dr4 = new Db.Drink("Latte", 0.7);
-        //ArrayList<Db.Drink> menu2 = new ArrayList<>();
-        HashMap<String, Db.Drink> menu2 = new HashMap<>();
-        menu2.put("Mocha",dr2);
-        menu2.put("Thai Tea", dr3);
-        menu2.put("Latte", dr4);
-        //Db.Restaurant dbr2 = new Db.Restaurant("test2", 34.0256, -118.2859, menu2);
-        Db.Restaurant dbr2 = new Db.Restaurant("test2", 34.0256, -118.2859, menu2);
-        //Db.restaurant_list.add(dbr2);
-        dbr2.getinfo();
-        Db.restaurant_map.put("test2", dbr2);
+        LatLng UCLA = new LatLng(34.0668, -118.4454);
+        Marker mk = mMap.addMarker(new MarkerOptions().position(UCLA).title("Restaurant Location"));
+        mk.setDraggable(true);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(UCLA));
 
 
-
-        //for(Db.Restaurant r: Db.restaurant_list){
-        for(Db.Restaurant r: Db.restaurant_map.values()) {
-            LatLng latest = new LatLng(r.lat, r.longitude);
-            mMap.addMarker(new MarkerOptions()
-                    .position(latest)
-                    .title(r.name)
-                    .snippet(r.info)
-            );
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latest));
-        }
 
 
     }
@@ -104,6 +72,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
                 Toast.LENGTH_SHORT).show();
 
          */
+        /*
         Intent ItemPurchaseIntent = new Intent(this, ItemPurchaseActivity.class);
 //        GotoProfileIntent.putExtra("logged_in", username);
         ItemPurchaseIntent.putExtra("restaurant", marker.getTitle());
@@ -116,9 +85,25 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         ItemPurchaseIntent.putExtra("logged_in_email", email);
 
         startActivity(ItemPurchaseIntent);
-
+        */
 
     }
 
 
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+        destLatLng = marker.getPosition();
+        System.out.print("latitude: " + destLatLng.latitude + " longitude: " + destLatLng.longitude);
+
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+
+    }
 }
