@@ -40,13 +40,22 @@ public class DatabaseTest {
     }
 
     @Test
-    public void orderConstruct() {
-        Db.Order test = new Db.Order(new Db.Drink("coffee", 50), "default");
+    public void orderClass() {
+        Db.Drink drink = new Db.Drink("coke", 100.0);
+        Db.Order test = new Db.Order(drink, "feb24");
+        assertEquals(drink.name, "coke");
+        assertEquals(drink.calories, 100.0, 0.01);
+        assertEquals(test.DateTime, "feb24");
     }
 
     @Test
-    public void restaurantConstruct() {
-
+    public void restaurantClass() {
+        HashMap<String, Db.Drink> menu = new HashMap<String, Db.Drink>();
+        Db.Restaurant test = new Db.Restaurant("starbucks", 24.0, 34.0, menu);
+        assertEquals(test.name, "starbucks");
+        assertEquals(test.lat, 24.0,0.001);
+        assertEquals(test.longitude, 34.0,0.001);
+        assertEquals(test.menu.size(), 0);
     }
 
 
