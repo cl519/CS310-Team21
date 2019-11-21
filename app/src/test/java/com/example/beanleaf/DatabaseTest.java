@@ -21,26 +21,31 @@ public class DatabaseTest {
     // Ensure we retrive the same object
     @Test
     public void singletonDB() {
-        Db db1 = Db.getDatabase();
-        Db db2 = Db.getDatabase();
-        assertEquals(db1, db2);
+        assertEquals(Db.getDatabase(), Db.getDatabase());
     }
 
     // Test Db class constructors
     @Test
-    public void userClass() {
+    public void userConstruct() {
         Db.User test = new Db.User("bob", "password");
         assertEquals(test.username, "bob");
         assertEquals(test.password, "password");
     }
 
     @Test
-    public void orderClass() {
-
+    public void drinkConstruct() {
+        Db.Drink test = new Db.Drink("coffee", 50);
+        assertEquals(test.calories, 50);
+        assertEquals(test.name, "coffee");
     }
 
     @Test
-    public void restaurantClass() {
+    public void orderConstruct() {
+        Db.Order test = new Db.Order(new Db.Drink("coffee", 50), "default");
+    }
+
+    @Test
+    public void restaurantConstruct() {
 
     }
 
