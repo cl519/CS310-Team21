@@ -41,7 +41,6 @@ public class DatabaseTest {
 
     @Test
     public void orderConstruct() {
-        Db.Order test = new Db.Order(new Db.Drink("coffee", 50), "default");
     }
 
     @Test
