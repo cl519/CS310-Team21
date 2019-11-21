@@ -1,5 +1,7 @@
 package com.example.beanleaf;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,7 +48,6 @@ public class DatabaseTest {
         assertEquals(drink.name, "coke");
         assertEquals(drink.calories, 100.0, 0.01);
         assertEquals(test.DateTime, "feb24");
-    }
 
     @Test
     public void restaurantClass() {
