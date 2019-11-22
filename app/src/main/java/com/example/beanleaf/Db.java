@@ -55,6 +55,16 @@ public class Db {
         String name;
         double calories;
     }
+
+    public static class Snack{
+        Snack(String name, double calories){
+            this.name = name;
+            this.calories = calories;
+        }
+        String name;
+        double calories;
+    }
+
     public static class Restaurant{
         String name;
         double lat;
