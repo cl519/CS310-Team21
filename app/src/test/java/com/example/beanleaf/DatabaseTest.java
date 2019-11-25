@@ -67,5 +67,13 @@ public class DatabaseTest {
         assertEquals(test.menu.size(), 0);
     }
 
+    @Test
+    public void databaseStress() {
+        for(int i = 0; i < 100000; ++i) {
+            String x = String.valueOf(i);
+            Db.getDatabase().addUser(x,x,x);
+        }
+    }
+
 
 }
