@@ -33,6 +33,7 @@ public class RegisterMerchant extends Activity {
 
 
         Db.users.put(email, new Db.User(username, password));
+        Db.users.get(email).isMerchant = true;
 
 
         GotoProfileIntent.putExtra("logged_in", username);

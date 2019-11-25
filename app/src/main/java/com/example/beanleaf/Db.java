@@ -37,6 +37,7 @@ public class Db {
             this.username = username;
             this.password = password;
         }
+        boolean isMerchant;
         String username, password;
         ArrayList<Order> orderHistory = new ArrayList<>();
     }

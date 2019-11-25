@@ -4,6 +4,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -98,12 +100,32 @@ public class AddBusinessActivity extends FragmentActivity implements GoogleMap.O
     @Override
     public void onMarkerDrag(Marker marker) {
         destLatLng = marker.getPosition();
-        System.out.print("latitude: " + destLatLng.latitude + " longitude: " + destLatLng.longitude);
 
     }
 
     @Override
     public void onMarkerDragEnd(Marker marker) {
+        destLatLng = marker.getPosition();
+        Log.d("latitude", Double.toString(destLatLng.latitude));
 
+    }
+
+    public void SetLocation(View view) {
+        Intent activityThatCalled = getIntent();
+
+        String logged_in_person = activityThatCalled.getExtras().getString("logged_in");
+        String email = activityThatCalled.getExtras().getString("logged_in_email");
+
+
+        Intent FillRestaurantInfo = new Intent(this, FillRestaurantInfo.class);
+        FillRestaurantInfo.putExtra("Lat", Double.toString(destLatLng.latitude));
+        FillRestaurantInfo.putExtra("Lng", Double.toString(destLatLng.longitude));
+        FillRestaurantInfo.putExtra("logged_in", logged_in_person);
+        FillRestaurantInfo.putExtra("logged_in_email", email);
+
+
+
+
+        startActivity(FillRestaurantInfo);
     }
 }
