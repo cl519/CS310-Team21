@@ -79,9 +79,28 @@ public class DatabaseTest {
     }
 
     @Test
-    public void dbVerify() {
+    public void dbVerifyTrue() {
         database.addUser("test","pass","test@test.com");
         assertTrue(verifyUser("test@test.com","pass"));
+    }
+
+    @Test
+    public void dbVerifyFalse() {
+        database.addUser("test","pass","test@test.com");
+        assertFalse(verifyUser("test@test.com","password"));
+    }
+
+    @Test
+    public void emailVerifyTrue() {
+        assertTrue(Db.verifyEmail("test@test.com"));
+    }
+
+    @Test
+    public void emailVerifyFalse() {
+        assertFalse(Db.verifyEmail("@bb"));
+        assertFalse(Db.verifyEmail("bb@"));
+        assertFalse(Db.verifyEmail("b"));
+
     }
 
 

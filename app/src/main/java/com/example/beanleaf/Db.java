@@ -19,6 +19,16 @@ public class Db {
         return database;
     }
 
+    public static boolean verifyEmail(String email) {
+        if(email.length() < 3) {
+            return false;
+        } else if( !email.substring(1, email.length()-1).contains("@") ) {
+            return false;
+        }
+
+        return true;
+    }
+
     public static boolean verifyUser(String email, String password) {
 //        Log.d("email", email);
 //        Log.d("password", password);
