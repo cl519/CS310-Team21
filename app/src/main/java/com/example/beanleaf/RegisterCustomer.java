@@ -34,6 +34,7 @@ public class RegisterCustomer extends Activity{
         String password = ((EditText) findViewById(R.id.register_password)).getText().toString();
 
         Db.users.put(email, new Db.User(username, password));
+        Db.users.get(email).isMerchant = false;
 
 
         GotoProfileIntent.putExtra("logged_in", username);

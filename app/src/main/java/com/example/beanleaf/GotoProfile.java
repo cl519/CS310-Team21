@@ -37,7 +37,7 @@ public class GotoProfile extends Activity {
             ev.append(hist.get(i).drink.name + " " + hist.get(i).DateTime + "\n");
         }
         Button testButton=(Button)findViewById(R.id.create_business_button);
-        if(activityThatCalled.hasExtra("business")){
+        if(Db.users.get(logged_in_email).isMerchant){
             testButton.setVisibility(View.VISIBLE);
         }else{
             testButton.setVisibility(View.GONE);
@@ -71,6 +71,13 @@ public class GotoProfile extends Activity {
     public void AddBusinessActivity(View view){
         Intent AddBusinessIntent = new Intent(this, AddBusinessActivity.class);
 
+        Intent activityThatCalled = getIntent();
+        String logged_in_person = activityThatCalled.getExtras().getString("logged_in");
+        String email = activityThatCalled.getExtras().getString("logged_in_email");
+
+
+        AddBusinessIntent.putExtra("logged_in", logged_in_person);
+        AddBusinessIntent.putExtra("logged_in_email", email);
         startActivity(AddBusinessIntent);
     }
 

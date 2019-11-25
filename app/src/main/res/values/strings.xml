@@ -22,4 +22,6 @@
     <string name="enter_password">Enter Password</string>
     <string name="register">Register</string>
     <string name="enter_business">Enter Business Code</string>
+    <string name="enter_info">Please fill out information about your shop!</string>
+    <string name="enter_restaurant_name">Name of your shop</string>
 </resources>
