@@ -119,4 +119,11 @@ public class DatabaseTest {
         assertEquals(String.valueOf(hash.hashCode()), Db.getHash(hash));
     }
 
+    @Test
+    public void UserVerificationTest(){
+        Db.users.put("Dawg@tft.edu", new Db.User("Dog", "123"));
+        assertTrue(Db.verifyUser("Dawg@tft.edu", "123"));
+
+    }
+
 }
