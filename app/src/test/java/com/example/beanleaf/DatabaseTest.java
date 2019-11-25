@@ -3,6 +3,8 @@ package com.example.beanleaf;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -120,9 +122,33 @@ public class DatabaseTest {
     }
 
     @Test
-    public void UserVerificationTest(){
-        Db.users.put("Dawg@tft.edu", new Db.User("Dog", "123"));
-        assertTrue(Db.verifyUser("Dawg@tft.edu", "123"));
+    public void PurchaseSorted(){
+        Db.Drink first_drink = new Db.Drink("Coke", 10.0);
+        Db.Order first_order = new Db.Order(first_drink, "2019-06-22 12:02:21");
+        Db.Drink second_drink = new Db.Drink("Sprite", 10.0);
+        Db.Order second_order = new Db.Order(second_drink, "2019-08-22 08:02:21");
+        Db.Drink third_drink = new Db.Drink("Lemonade", 10.0);
+        Db.Order third_order = new Db.Order(third_drink, "2019-09-22 12:02:21");
+
+        Db.User us = new Db.User("Dawg", "123");
+
+        us.orderHistory.add(first_order);
+        us.orderHistory.add(second_order);
+        us.orderHistory.add(third_order);
+
+        ArrayList<Db.Order> temp = new ArrayList(us.orderHistory);
+
+        Collections.sort(us.orderHistory, new Comparator<Db.Order>() {
+
+            @Override
+            public int compare(Db.Order o1, Db.Order o2) {
+                return o1.DateTime.compareTo(o2.DateTime);
+            }
+        });
+        boolean sorted = temp.equals(us.orderHistory);
+
+        assertTrue(sorted);
+
 
     }
 
