@@ -41,14 +41,14 @@ public class LoginTest {
             new ActivityTestRule<>(LocalLoginActivity.class);
 
     @Test
-    public void initializeTest() {
+    public void InitializeTest() {
         // Ensures that our testing software is working and can access the app
         onView(withId(R.id.login_email))
                 .perform(typeText("Blackbox"), closeSoftKeyboard());
     }
 
     @Test
-    public void registerUserTest() {
+    public void RegisterUserTest() {
         ViewInteraction button = onView(
                 allOf(withText("Register as User"),
                         childAtPosition(
@@ -241,6 +241,212 @@ public class LoginTest {
                                 3),
                         isDisplayed()));
         editText10.perform(replaceText("password123"), closeSoftKeyboard());
+
+        ViewInteraction button4 = onView(
+                allOf(withText("Sign in"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                4),
+                        isDisplayed()));
+        button4.perform(click());
+
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.welcome_user), withText("Welcome! testuser"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        textView.check(matches(withText("Welcome! testuser")));
+    }
+
+    @Test
+    public void RegisterMerchantTest() {
+        ViewInteraction button = onView(
+                allOf(withText("Register as Merchant"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        2),
+                                0),
+                        isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction editText = onView(
+                allOf(withId(R.id.register_user_name),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                1),
+                        isDisplayed()));
+        editText.perform(replaceText("testuser"), closeSoftKeyboard());
+
+        ViewInteraction editText2 = onView(
+                allOf(withId(R.id.register_email),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                3),
+                        isDisplayed()));
+        editText2.perform(replaceText("test@test.com"), closeSoftKeyboard());
+
+        ViewInteraction editText3 = onView(
+                allOf(withId(R.id.register_password),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                5),
+                        isDisplayed()));
+        editText3.perform(click());
+
+        ViewInteraction editText4 = onView(
+                allOf(withId(R.id.register_password),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                5),
+                        isDisplayed()));
+        editText4.perform(replaceText("password123"), closeSoftKeyboard());
+
+        ViewInteraction editText5 = onView(
+                allOf(withId(R.id.business_verification),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                7),
+                        isDisplayed()));
+        editText5.perform(replaceText("1234567890"), closeSoftKeyboard());
+
+        ViewInteraction button2 = onView(
+                allOf(withText("Register"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button2.perform(click());
+
+        ViewInteraction button3 = onView(
+                allOf(withId(R.id.create_business_button),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
+        button3.check(matches(isDisplayed()));
+
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.welcome_user), withText("Welcome! testuser"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        textView.check(matches(withText("Welcome! testuser")));
+    }
+
+    @Test
+    public void SignInMerchant() {
+        ViewInteraction button = onView(
+                allOf(withText("Register as Merchant"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        2),
+                                0),
+                        isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction editText = onView(
+                allOf(withId(R.id.register_user_name),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                1),
+                        isDisplayed()));
+        editText.perform(replaceText("testuser"), closeSoftKeyboard());
+
+        ViewInteraction editText2 = onView(
+                allOf(withId(R.id.register_email),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                3),
+                        isDisplayed()));
+        editText2.perform(replaceText("test@test.com"), closeSoftKeyboard());
+
+        ViewInteraction editText3 = onView(
+                allOf(withId(R.id.register_password),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                5),
+                        isDisplayed()));
+        editText3.perform(replaceText("password123"), closeSoftKeyboard());
+
+        ViewInteraction editText4 = onView(
+                allOf(withId(R.id.business_verification),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                7),
+                        isDisplayed()));
+        editText4.perform(replaceText("1234567890"), closeSoftKeyboard());
+
+        ViewInteraction button2 = onView(
+                allOf(withText("Register"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button2.perform(click());
+
+        ViewInteraction button3 = onView(
+                allOf(withText("Log out"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                3),
+                        isDisplayed()));
+        button3.perform(click());
+
+        ViewInteraction editText5 = onView(
+                allOf(withId(R.id.login_email),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                1),
+                        isDisplayed()));
+        editText5.perform(replaceText("test@test.com"), closeSoftKeyboard());
+
+        ViewInteraction editText6 = onView(
+                allOf(withId(R.id.login_password),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                3),
+                        isDisplayed()));
+        editText6.perform(replaceText("password123"), closeSoftKeyboard());
 
         ViewInteraction button4 = onView(
                 allOf(withText("Sign in"),
