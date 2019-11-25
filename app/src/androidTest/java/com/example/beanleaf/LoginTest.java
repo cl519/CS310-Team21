@@ -7,6 +7,7 @@ import android.view.ViewParent;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -473,7 +474,7 @@ public class LoginTest {
     }
 
     @Test
-    public void localLoginActivityTest5() {
+    public void goToMapsTest() {
         ViewInteraction button = onView(
                 allOf(withText("Register as User"),
                         childAtPosition(
@@ -534,33 +535,179 @@ public class LoginTest {
                         isDisplayed()));
         button3.perform(click());
 
-        DataInteraction textView = onData(anything())
-                .inAdapterView(allOf(withId(R.id.ItemListView),
-                        childAtPosition(
-                                withClassName(is("android.widget.LinearLayout")),
-                                1)))
-                .atPosition(1);
-        textView.perform(click());
+//        DataInteraction textView = onData(anything())
+//                .inAdapterView(allOf(withId(R.id.ItemListView),
+//                        childAtPosition(
+//                                withClassName(is("android.widget.LinearLayout")),
+//                                1)))
+//                .atPosition(1);
+//        textView.perform(click());
+//
+//        ViewInteraction button4 = onView(
+//                allOf(withText("Back to Profile"),
+//                        childAtPosition(
+//                                childAtPosition(
+//                                        withId(android.R.id.content),
+//                                        0),
+//                                0),
+//                        isDisplayed()));
+//        button4.perform(click());
+//
+//        ViewInteraction textView2 = onView(
+//                allOf(withId(R.id.purchase_history), withText("Purchase History: \nMocha"),
+//                        childAtPosition(
+//                                childAtPosition(
+//                                        withId(android.R.id.content),
+//                                        0),
+//                                3),
+//                        isDisplayed()));
+//        textView2.check(matches(withText("Purchase History:  Mocha ")));
+    }
 
-        ViewInteraction button4 = onView(
-                allOf(withText("Back to Profile"),
+    @Test
+    public void InvalidEmailTest() {
+        ViewInteraction editText = onView(
+                allOf(withId(R.id.login_email),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(android.R.id.content),
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                1),
+                        isDisplayed()));
+        editText.perform(replaceText("test"), closeSoftKeyboard());
+
+        ViewInteraction editText2 = onView(
+                allOf(withId(R.id.login_password),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                3),
+                        isDisplayed()));
+        editText2.perform(replaceText("pass"), closeSoftKeyboard());
+
+        ViewInteraction button = onView(
+                allOf(withText("Sign in"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                4),
+                        isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction frameLayout = onView(
+                allOf(withId(android.R.id.content),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
                                         0),
                                 0),
                         isDisplayed()));
-        button4.perform(click());
+        frameLayout.check(matches(isDisplayed()));
+    }
 
-        ViewInteraction textView2 = onView(
-                allOf(withId(R.id.purchase_history), withText("Purchase History: \nMocha"),
+    @Test
+    public void InvalidUserTest() {
+        ViewInteraction button = onView(
+                allOf(withText("Register as User"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction editText = onView(
+                allOf(withId(R.id.register_user_name),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                1),
+                        isDisplayed()));
+        editText.perform(replaceText("testuser"), closeSoftKeyboard());
+
+        ViewInteraction editText2 = onView(
+                allOf(withId(R.id.register_email),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                3),
+                        isDisplayed()));
+        editText2.perform(replaceText("test@test.com"), closeSoftKeyboard());
+
+        ViewInteraction editText3 = onView(
+                allOf(withId(R.id.register_password),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                5),
+                        isDisplayed()));
+        editText3.perform(replaceText("password123"), closeSoftKeyboard());
+
+        ViewInteraction button2 = onView(
+                allOf(withText("Register"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button2.perform(click());
+
+        ViewInteraction button3 = onView(
+                allOf(withText("Log out"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 3),
                         isDisplayed()));
-        textView2.check(matches(withText("Purchase History:  Mocha ")));
+        button3.perform(click());
+
+        ViewInteraction editText4 = onView(
+                allOf(withId(R.id.login_email),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                1),
+                        isDisplayed()));
+        editText4.perform(replaceText("test@test.com"), closeSoftKeyboard());
+
+        ViewInteraction editText5 = onView(
+                allOf(withId(R.id.login_password),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                3),
+                        isDisplayed()));
+        editText5.perform(replaceText("password124"), closeSoftKeyboard());
+
+        ViewInteraction button4 = onView(
+                allOf(withText("Sign in"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                4),
+                        isDisplayed()));
+        button4.perform(click());
+
+        ViewInteraction frameLayout = onView(
+                allOf(withId(android.R.id.content),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
+                                        0),
+                                0),
+                        isDisplayed()));
+        frameLayout.check(matches(isDisplayed()));
     }
 
     private static Matcher<View> childAtPosition(
