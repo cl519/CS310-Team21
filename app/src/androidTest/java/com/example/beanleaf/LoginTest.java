@@ -8,6 +8,7 @@ import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -21,13 +22,25 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 public class LoginTest {
 
     @Rule
-    public ActivityTestRule<LoginActivity> mLoginActivityTestRule =
-            new ActivityTestRule<>(LoginActivity.class);
+    public ActivityTestRule<LocalLoginActivity> mLoginActivityTestRule =
+            new ActivityTestRule<>(LocalLoginActivity.class);
 
     @Test
     public void initializeTest() {
-        onView(withId(R.id.username))
+        // Ensures that our testing software is working and can access the app
+        onView(withId(R.id.login_email))
                 .perform(typeText("Blackbox"), closeSoftKeyboard());
-        //onView(withId(R.id.))
     }
+
+//    @Test
+//    public void registerUserTest() {
+//        onView(withId(R.id.registerUser))
+//                .perform(click());
+//    }
+//
+//    @Test
+//    public void registerMerchantTest() {
+//        onView(withId(R.id.registerMerchant))
+//                .perform(click());
+//    }
 }
