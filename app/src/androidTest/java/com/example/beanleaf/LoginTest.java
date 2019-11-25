@@ -817,6 +817,231 @@ public class LoginTest {
         button.perform(click());
     }
 
+    public void checkLoginButtons() {
+        ViewInteraction button = onView(
+                allOf(childAtPosition(
+                        childAtPosition(
+                                IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                1),
+                        0),
+                        isDisplayed()));
+        button.check(matches(isDisplayed()));
+
+        ViewInteraction button2 = onView(
+                allOf(childAtPosition(
+                        childAtPosition(
+                                IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                0),
+                        4),
+                        isDisplayed()));
+        button2.check(matches(isDisplayed()));
+
+        ViewInteraction button3 = onView(
+                allOf(childAtPosition(
+                        childAtPosition(
+                                IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                2),
+                        0),
+                        isDisplayed()));
+        button3.check(matches(isDisplayed()));
+
+        ViewInteraction button4 = onView(
+                allOf(withText("Register as User"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button4.perform(click());
+
+        ViewInteraction editText = onView(
+                allOf(withId(R.id.register_user_name),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                1),
+                        isDisplayed()));
+        editText.perform(replaceText("x"), closeSoftKeyboard());
+
+        ViewInteraction editText2 = onView(
+                allOf(withId(R.id.register_email),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                3),
+                        isDisplayed()));
+        editText2.perform(replaceText("x"), closeSoftKeyboard());
+
+        ViewInteraction editText3 = onView(
+                allOf(withId(R.id.register_password),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                5),
+                        isDisplayed()));
+        editText3.perform(replaceText("x"), closeSoftKeyboard());
+
+        ViewInteraction button5 = onView(
+                allOf(childAtPosition(
+                        childAtPosition(
+                                IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                1),
+                        0),
+                        isDisplayed()));
+        button5.check(matches(isDisplayed()));
+
+        ViewInteraction button6 = onView(
+                allOf(withText("Register"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button6.perform(click());
+    }
+
+    @Test
+    public void checkUserRegisterButtons() {
+        ViewInteraction button = onView(
+                allOf(withText("Register as User"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction button2 = onView(
+                allOf(childAtPosition(
+                        childAtPosition(
+                                IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                1),
+                        0),
+                        isDisplayed()));
+        button2.check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void checkMerchantRegisterButtons() {
+        ViewInteraction button = onView(
+                allOf(withText("Register as Merchant"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        2),
+                                0),
+                        isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction button2 = onView(
+                allOf(childAtPosition(
+                        childAtPosition(
+                                IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                1),
+                        0),
+                        isDisplayed()));
+        button2.check(matches(isDisplayed()));
+    }
+
+    public void checkUserProfileButtons() {
+        ViewInteraction button = onView(
+                allOf(withText("Register as User"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction button2 = onView(
+                allOf(withText("Register"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button2.perform(click());
+
+        ViewInteraction button3 = onView(
+                allOf(withId(R.id.button),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        button3.check(matches(isDisplayed()));
+
+        ViewInteraction button4 = onView(
+                allOf(childAtPosition(
+                        childAtPosition(
+                                withId(android.R.id.content),
+                                0),
+                        2),
+                        isDisplayed()));
+        button4.check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void checkMerchantProfileButtons() {
+        ViewInteraction button = onView(
+                allOf(withText("Register as Merchant"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        2),
+                                0),
+                        isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction button2 = onView(
+                allOf(withText("Register"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button2.perform(click());
+
+        ViewInteraction button3 = onView(
+                allOf(withId(R.id.button),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        button3.check(matches(isDisplayed()));
+
+        ViewInteraction button4 = onView(
+                allOf(withId(R.id.create_business_button),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
+        button4.check(matches(isDisplayed()));
+
+        ViewInteraction button5 = onView(
+                allOf(childAtPosition(
+                        childAtPosition(
+                                withId(android.R.id.content),
+                                0),
+                        3),
+                        isDisplayed()));
+        button5.check(matches(isDisplayed()));
+    }
+
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
 
