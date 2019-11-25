@@ -1,6 +1,9 @@
 package com.example.beanleaf;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.junit.Assert;
@@ -103,5 +106,17 @@ public class DatabaseTest {
 
     }
 
+    @Test
+    public void dateTest() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        assertEquals(dateFormat.format(date),Db.getDate()); //2016/11/16 12:08:43
+    }
+
+    @Test
+    public void hashTest() {
+        String hash = "password";
+        assertEquals(String.valueOf(hash.hashCode()), Db.getHash(hash));
+    }
 
 }

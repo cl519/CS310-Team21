@@ -1,8 +1,12 @@
 package com.example.beanleaf;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Db {
@@ -17,6 +21,16 @@ public class Db {
             database = new Db();
         }
         return database;
+    }
+
+    public static String getDate() {
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    public static String getHash(String password) {
+        return String.valueOf(password.hashCode());
     }
 
     public static boolean verifyEmail(String email) {
