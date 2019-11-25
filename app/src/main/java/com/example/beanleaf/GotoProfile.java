@@ -3,6 +3,7 @@ package com.example.beanleaf;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,10 @@ public class GotoProfile extends Activity {
         Intent activityThatCalled = getIntent();
         String logged_in_person = activityThatCalled.getExtras().getString("logged_in");
         String logged_in_email = activityThatCalled.getExtras().getString("logged_in_email");
+
+        Log.d("email", logged_in_email);
+        Log.d("username", logged_in_person);
+        Log.d("in the map?", Db.users.get(logged_in_email).toString());
 
         TextView tv = (TextView) findViewById(R.id.welcome_user);
         tv.append(logged_in_person);
@@ -67,5 +72,10 @@ public class GotoProfile extends Activity {
         Intent AddBusinessIntent = new Intent(this, AddBusinessActivity.class);
 
         startActivity(AddBusinessIntent);
+    }
+
+    public void BackToLoginActivity(View view) {
+        Intent BackToLoginIntent = new Intent(this, LocalLoginActivity.class);
+        startActivity(BackToLoginIntent);
     }
 }

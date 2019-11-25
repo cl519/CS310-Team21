@@ -1,5 +1,7 @@
 package com.example.beanleaf;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,7 +19,9 @@ public class Db {
         return database;
     }
 
-    public boolean verifyUser(String email, String password) {
+    public static boolean verifyUser(String email, String password) {
+//        Log.d("email", email);
+//        Log.d("password", password);
         if(users.containsKey(email)) {
             return users.get(email).password.equals(password);
         }
