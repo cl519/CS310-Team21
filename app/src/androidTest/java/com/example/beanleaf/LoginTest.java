@@ -11,10 +11,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
+import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -26,6 +28,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
 /**
@@ -467,6 +470,97 @@ public class LoginTest {
                                 0),
                         isDisplayed()));
         textView.check(matches(withText("Welcome! testuser")));
+    }
+
+    @Test
+    public void localLoginActivityTest5() {
+        ViewInteraction button = onView(
+                allOf(withText("Register as User"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction editText = onView(
+                allOf(withId(R.id.register_user_name),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                1),
+                        isDisplayed()));
+        editText.perform(replaceText("test"), closeSoftKeyboard());
+
+        ViewInteraction editText2 = onView(
+                allOf(withId(R.id.register_email),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                3),
+                        isDisplayed()));
+        editText2.perform(replaceText("test"), closeSoftKeyboard());
+
+        ViewInteraction editText3 = onView(
+                allOf(withId(R.id.register_password),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        0),
+                                5),
+                        isDisplayed()));
+        editText3.perform(replaceText("test"), closeSoftKeyboard());
+
+        ViewInteraction button2 = onView(
+                allOf(withText("Register"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        button2.perform(click());
+
+        ViewInteraction button3 = onView(
+                allOf(withId(R.id.button), withText("Look for shops"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        button3.perform(click());
+
+        DataInteraction textView = onData(anything())
+                .inAdapterView(allOf(withId(R.id.ItemListView),
+                        childAtPosition(
+                                withClassName(is("android.widget.LinearLayout")),
+                                1)))
+                .atPosition(1);
+        textView.perform(click());
+
+        ViewInteraction button4 = onView(
+                allOf(withText("Back to Profile"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        button4.perform(click());
+
+        ViewInteraction textView2 = onView(
+                allOf(withId(R.id.purchase_history), withText("Purchase History: \nMocha"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                3),
+                        isDisplayed()));
+        textView2.check(matches(withText("Purchase History:  Mocha ")));
     }
 
     private static Matcher<View> childAtPosition(

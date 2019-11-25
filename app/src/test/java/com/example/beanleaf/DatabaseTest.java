@@ -2,13 +2,16 @@ package com.example.beanleaf;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.example.beanleaf.Db.verifyUser;
 import static org.junit.Assert.*;
 
 public class DatabaseTest {
-    private Db database;
+    private Db database = Db.getDatabase();
 
     @Before
     public void setUp() throws Exception {
@@ -73,6 +76,12 @@ public class DatabaseTest {
             String x = String.valueOf(i);
             Db.getDatabase().addUser(x,x,x);
         }
+    }
+
+    @Test
+    public void dbVerify() {
+        database.addUser("test","pass","test@test.com");
+        assertTrue(verifyUser("test@test.com","pass"));
     }
 
 
