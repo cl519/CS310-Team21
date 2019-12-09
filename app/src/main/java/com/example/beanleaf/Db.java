@@ -3,6 +3,7 @@ package com.example.beanleaf;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -64,6 +65,7 @@ public class Db {
         boolean isMerchant;
         String username, password;
         ArrayList<Order> orderHistory = new ArrayList<>();
+        ArrayList<String> ownedRestaurant = new ArrayList<>();
     }
 
     public static class Order{
@@ -77,12 +79,17 @@ public class Db {
 
 
     public static class Drink{
-        Drink(String name, double calories){
+        Drink(String name, double price, double calories, String nutrition){
             this.name = name;
+            this.price = price;
             this.calories = calories;
+            this.nutrition = nutrition;
+
         }
         String name;
+        double price;
         double calories;
+        String nutrition;
     }
 
     public static class Snack{
@@ -101,6 +108,7 @@ public class Db {
         //ArrayList<Drink> menu;
         HashMap<String, Drink> menu;
         String info = new String();
+        ArrayList<String> selling_history = new ArrayList<>();
 
         public Restaurant(String name, double lat, double longitude, HashMap<String, Drink> menu){
             this.name = name;

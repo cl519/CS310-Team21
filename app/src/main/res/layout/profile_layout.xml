@@ -41,5 +41,10 @@
         android:text = "Purchase History: \n"
         android:id = "@+id/purchase_history"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Selling History\n"
+        android:id="@+id/selling_history"/>
 
 </LinearLayout>

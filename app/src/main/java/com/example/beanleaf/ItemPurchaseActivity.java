@@ -75,11 +75,14 @@ public class ItemPurchaseActivity extends Activity {
                         String logged_in_person = activityThatCalled.getExtras().getString("logged_in");
                         String email = activityThatCalled.getExtras().getString("logged_in_email");
 
-                        Db.Drink db = Db.restaurant_map.get(restaurant_name).menu.get(item);
+                        Db.Drink dr = Db.restaurant_map.get(restaurant_name).menu.get(item);
                         Date currentTime = Calendar.getInstance().getTime();
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
                         String strDate = dateFormat.format(currentTime);
-                        Db.users.get(email).orderHistory.add(new Db.Order(db, strDate));
+                        Db.users.get(email).orderHistory.add(new Db.Order(dr, strDate));
+
+                        //Add to merchant's selling history
+                        Db.restaurant_map.get(restaurant_name).selling_history.add(dr.name + " " + strDate + " by " + logged_in_person);
                     }
                 });
 

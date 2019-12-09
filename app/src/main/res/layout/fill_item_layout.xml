@@ -16,18 +16,51 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/enter_info" />
+            android:text="Enter Item Info" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/enter_restaurant_name"/>
+            android:text="Item name: "/>
 
         <EditText
-            android:id="@+id/restaurant_name"
+            android:id="@+id/item_name"
             android:layout_width="185dp"
             android:layout_height="wrap_content"
             android:inputType="text" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item Price: "/>
+
+        <EditText
+            android:id="@+id/item_price"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Amount of Caffeine(mg): "/>
+
+        <EditText
+            android:id="@+id/item_caffeine"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nutrition Details: "/>
+
+        <EditText
+            android:id="@+id/item_nutrition"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
 
     </LinearLayout>
 
@@ -41,7 +74,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Finish"
+            android:text="Submit"
             android:onClick="MakeMenu"/>
     </LinearLayout>
 
