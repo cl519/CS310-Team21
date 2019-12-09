@@ -60,7 +60,24 @@ public class Db {
         User(String username, String password) {
             this.username = username;
             this.password = password;
+            dailyCaffeine = 0;
+            dailyNotification = false;
         }
+        void CaffeineReset() {
+            if(orderHistory.size() < 2) return;
+
+            String d1 = orderHistory.get(orderHistory.size()-1).DateTime;
+            String d2 = orderHistory.get(orderHistory.size()-2).DateTime;
+            String d1c = d1.split(" ")[0];
+            String d2c = d2.split(" ")[0];
+
+            if(!d1c.equals(d2c)) {
+                dailyCaffeine = 0;
+                dailyNotification = false;
+            }
+        }
+        boolean dailyNotification;
+        int dailyCaffeine;
         boolean isMerchant;
         String username, password;
         ArrayList<Order> orderHistory = new ArrayList<>();
@@ -80,8 +97,15 @@ public class Db {
         Drink(String name, double calories){
             this.name = name;
             this.calories = calories;
+            caffeine = 100;
+        }
+        Drink(String name, double calories, double caffeine){
+            this.name = name;
+            this.calories = calories;
+            this.caffeine = caffeine;
         }
         String name;
+        double caffeine;
         double calories;
     }
 

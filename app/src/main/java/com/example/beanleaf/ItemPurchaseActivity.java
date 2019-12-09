@@ -1,6 +1,8 @@
 package com.example.beanleaf;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,12 +20,19 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 public class ItemPurchaseActivity extends Activity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(final Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.purchase_layout);
@@ -51,16 +60,14 @@ public class ItemPurchaseActivity extends Activity {
             j++;
         }
 
-
-
         ListAdapter theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 drinks_to_adaptor);
 
-        ListView ItemListVIew = (ListView) findViewById(R.id.ItemListView);
+        ListView ItemListView = findViewById(R.id.ItemListView);
 
-        ItemListVIew.setAdapter(theAdapter);
+        ItemListView.setAdapter(theAdapter);
 
-        ItemListVIew.setOnItemClickListener(new
+        ItemListView.setOnItemClickListener(new
                 AdapterView.OnItemClickListener(){
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l){
@@ -80,10 +87,31 @@ public class ItemPurchaseActivity extends Activity {
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
                         String strDate = dateFormat.format(currentTime);
                         Db.users.get(email).orderHistory.add(new Db.Order(db, strDate));
+
+                        // Check if user is above their limit and send notification
+                        Objects.requireNonNull(Db.users.get(email)).CaffeineReset();
+                        Db.users.get(email).dailyCaffeine += db.caffeine;
+                        if(Db.users.get(email).dailyCaffeine >= 400) {
+                            showWarning();
+
+                        }
                     }
                 });
+    }
 
-
+    public void showWarning() {
+        AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+        dialog.setMessage("Warning: You have exceeded your daily caffeine limit");
+        dialog.setTitle("Bean&Leaf");
+        dialog.setPositiveButton("Dismiss",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        //Toast.makeText(getApplicationContext(),"Yes is clicked",Toast.LENGTH_LONG).show();
+                    }
+                });
+        AlertDialog alertDialog=dialog.create();
+        alertDialog.show();
     }
 
     public void GotoProfile(View view) {
@@ -105,4 +133,6 @@ public class ItemPurchaseActivity extends Activity {
         GotoProfileIntent.putExtra("logged_in_email", email);
         startActivity(GotoProfileIntent);
     }
+
+
 }

@@ -24,4 +24,5 @@
     <string name="enter_business">Enter Business Code</string>
     <string name="enter_info">Please fill out information about your shop!</string>
     <string name="enter_restaurant_name">Name of your shop</string>
+    <string name="caffeineWarning">Warning: exceeded daily caffeine intake</string>
 </resources>

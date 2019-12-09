@@ -68,9 +68,9 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         Db.restaurant_map.put("test", dbr);
         //Db.restaurant_list.add(dbr);
 
-        Db.Drink dr2 = new Db.Drink("Mocha", 0.7);
-        Db.Drink dr3 = new Db.Drink("Thai Tea", 0.7);
-        Db.Drink dr4 = new Db.Drink("Latte", 0.7);
+        Db.Drink dr2 = new Db.Drink("Mocha", 200);
+        Db.Drink dr3 = new Db.Drink("Thai Tea", 200);
+        Db.Drink dr4 = new Db.Drink("Latte", 200);
         //ArrayList<Db.Drink> menu2 = new ArrayList<>();
         HashMap<String, Db.Drink> menu2 = new HashMap<>();
         menu2.put("Mocha",dr2);
