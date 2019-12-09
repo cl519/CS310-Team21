@@ -57,6 +57,13 @@
             android:layout_height="wrap_content"
             android:inputType="text" />
 
+        <Button
+            android:id="@+id/upload"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:onClick="selectImage"
+            android:text="Upload Verification Documents" />
+
 
     </LinearLayout>
     <LinearLayout
