@@ -32,7 +32,7 @@ public class ItemPurchaseActivity extends Activity {
 
 
     @Override
-    protected void onCreate(final Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.purchase_layout);
@@ -55,7 +55,7 @@ public class ItemPurchaseActivity extends Activity {
         */
 
         int j = 0;
-        for(String s: drinks.keySet()){
+        for (String s : drinks.keySet()) {
             drinks_to_adaptor[j] = s;
             j++;
         }
@@ -68,24 +68,24 @@ public class ItemPurchaseActivity extends Activity {
         ItemListView.setAdapter(theAdapter);
 
         ItemListView.setOnItemClickListener(new
-                AdapterView.OnItemClickListener(){
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l){
-                        //String itemPicked = "You selected " + String.valueOf((adapterView.getItemAtPosition(position)));
-                        String item = String.valueOf((adapterView.getItemAtPosition(position)));
-                        String itemPicked = "Purchase of " + item + " added to history";
+                                                    AdapterView.OnItemClickListener() {
+                                                        @Override
+                                                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                                                            //String itemPicked = "You selected " + String.valueOf((adapterView.getItemAtPosition(position)));
+                                                            String item = String.valueOf((adapterView.getItemAtPosition(position)));
+                                                            String itemPicked = "Purchase of " + item + " added to history";
 
-                        //Button purchaseButton = (Button) findViewById(R.id.PurchaseButton);
-                        //purchaseButton.append(itemPicked);
-                        Toast.makeText(ItemPurchaseActivity.this, itemPicked, Toast.LENGTH_SHORT).show();
-                        Intent activityThatCalled = getIntent();
-                        String logged_in_person = activityThatCalled.getExtras().getString("logged_in");
-                        String email = activityThatCalled.getExtras().getString("logged_in_email");
+                                                            //Button purchaseButton = (Button) findViewById(R.id.PurchaseButton);
+                                                            //purchaseButton.append(itemPicked);
+                                                            Toast.makeText(ItemPurchaseActivity.this, itemPicked, Toast.LENGTH_SHORT).show();
+                                                            Intent activityThatCalled = getIntent();
+                                                            String logged_in_person = activityThatCalled.getExtras().getString("logged_in");
+                                                            String email = activityThatCalled.getExtras().getString("logged_in_email");
 
-                        Db.Drink db = Db.restaurant_map.get(restaurant_name).menu.get(item);
-                        Date currentTime = Calendar.getInstance().getTime();
-                        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-                        String strDate = dateFormat.format(currentTime);
+                                                            Db.Drink db = Db.restaurant_map.get(restaurant_name).menu.get(item);
+                                                            Date currentTime = Calendar.getInstance().getTime();
+                                                            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+                                                            String strDate = dateFormat.format(currentTime);
                         Db.users.get(email).orderHistory.add(new Db.Order(db, strDate));
 
                         // Check if user is above their limit and send notification
@@ -95,8 +95,12 @@ public class ItemPurchaseActivity extends Activity {
                             showWarning();
 
                         }
-                    }
-                });
+                        Db.users.get(email).orderHistory.add(new Db.Order(db, strDate));
+
+                        //Add to merchant's selling history
+                        Db.restaurant_map.get(restaurant_name).selling_history.add(db.name + " " + strDate + " by " + logged_in_person);
+                                                        }
+        });
     }
 
     public void showWarning() {
@@ -133,6 +137,4 @@ public class ItemPurchaseActivity extends Activity {
         GotoProfileIntent.putExtra("logged_in_email", email);
         startActivity(GotoProfileIntent);
     }
-
-
 }

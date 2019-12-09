@@ -55,7 +55,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         */
 
-        Db.Drink dr = new Db.Drink("first_coffee", 0.5);
+        Db.Drink dr = new Db.Drink("first_coffee", 3.65, 0.5, "test");
         HashMap<String, Db.Drink> menu = new HashMap();
         menu.put("first_coffee",dr);
         System.out.println("dr: "+ dr);
@@ -68,9 +68,9 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         Db.restaurant_map.put("test", dbr);
         //Db.restaurant_list.add(dbr);
 
-        Db.Drink dr2 = new Db.Drink("Mocha", 200);
-        Db.Drink dr3 = new Db.Drink("Thai Tea", 200);
-        Db.Drink dr4 = new Db.Drink("Latte", 200);
+        Db.Drink dr2 = new Db.Drink("Mocha", 3.75, 200, "test");
+        Db.Drink dr3 = new Db.Drink("Thai Tea", 3.75,200, "test");
+        Db.Drink dr4 = new Db.Drink("Latte", 3.75, 300, "test");
         //ArrayList<Db.Drink> menu2 = new ArrayList<>();
         HashMap<String, Db.Drink> menu2 = new HashMap<>();
         menu2.put("Mocha",dr2);

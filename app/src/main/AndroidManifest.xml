@@ -74,6 +74,11 @@
         <activity android:name=".FillRestaurantInfo"
             android:label = "Fill Restaurant Info"></activity>
 
+        <activity android:name=".MakeMenu"
+            android:label = "Add items to menu"></activity>
+        <activity android:name=".FillItemInfo"
+            android:label = "Fill item info"></activity>
+
 
     </application>
 
