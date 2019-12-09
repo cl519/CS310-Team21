@@ -2,8 +2,10 @@ package com.example.beanleaf;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class RegisterMerchant extends Activity {
@@ -21,6 +23,21 @@ public class RegisterMerchant extends Activity {
         */
 
     }
+
+    public void selectImage(View view) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"),69);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Button x = (Button) findViewById(R.id.upload);
+        x.setText("Verification Documents Uploaded!");
+        x.setTextColor(Color.GREEN);
+    }
+
 
     public void GotoProfile(View view) {
         Intent GotoProfileIntent = new Intent(this, GotoProfile.class);
