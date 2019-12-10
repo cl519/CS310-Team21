@@ -59,9 +59,11 @@ public class AddBusinessActivity extends FragmentActivity implements GoogleMap.O
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         */
         LatLng UCLA = new LatLng(34.0668, -118.4454);
-        Marker mk = mMap.addMarker(new MarkerOptions().position(UCLA).title("Restaurant Location"));
+        destLatLng = UCLA;
+        Marker mk = mMap.addMarker(new MarkerOptions().position(UCLA).title("Drag this pin to set your restaurant's location"));
         mk.setDraggable(true);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(UCLA));
+        float zoomLevel = 10.0f;
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(UCLA, zoomLevel));
 
 
 

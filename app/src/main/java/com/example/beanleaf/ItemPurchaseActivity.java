@@ -86,7 +86,7 @@ public class ItemPurchaseActivity extends Activity {
                                                             Date currentTime = Calendar.getInstance().getTime();
                                                             DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
                                                             String strDate = dateFormat.format(currentTime);
-                        Db.users.get(email).orderHistory.add(new Db.Order(db, strDate));
+                        //Db.users.get(email).orderHistory.add(new Db.Order(db, strDate));
 
                         // Check if user is above their limit and send notification
                         Objects.requireNonNull(Db.users.get(email)).CaffeineReset();

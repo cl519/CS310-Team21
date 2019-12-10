@@ -41,7 +41,7 @@ public class GotoProfile extends Activity {
         if(Db.users.get(logged_in_email).isMerchant){
             ArrayList<String> ownedRestaurant = Db.users.get(logged_in_email).ownedRestaurant;
             for(int i = 0; i < ownedRestaurant.size(); i++){
-                evSelling.append("Selling History of: " + ownedRestaurant.get(i) + "\n");
+                evSelling.append("Selling History of Shop " + ownedRestaurant.get(i) + " :\n");
                 ArrayList<String> selling_history = Db.restaurant_map.get(ownedRestaurant.get(i)).selling_history;
                 for(int j = 0; j < selling_history.size(); j++){
                     evSelling.append(selling_history.get(j) + "\n");

@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -55,32 +56,32 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         */
 
-        Db.Drink dr = new Db.Drink("first_coffee", 3.65, 0.5, "test");
+        Db.Drink dr = new Db.Drink("first_coffee", 3.65, 100, "test");
         HashMap<String, Db.Drink> menu = new HashMap();
         menu.put("first_coffee",dr);
         System.out.println("dr: "+ dr);
 
-        Db.Restaurant dbr = new Db.Restaurant("test", 34.0197, -118.2903, menu);
+        Db.Restaurant dbr = new Db.Restaurant("Hard_Coded_Sample_1", 34.0197, -118.2903, menu);
         System.out.println("Restaurant: " + dbr);
         System.out.println("menu: " + dbr.menu.get("first_coffee"));
         dbr.getinfo();
 
-        Db.restaurant_map.put("test", dbr);
+        Db.restaurant_map.put("Hard_Coded_Sample_1", dbr);
         //Db.restaurant_list.add(dbr);
 
-        Db.Drink dr2 = new Db.Drink("Mocha", 3.75, 200, "test");
-        Db.Drink dr3 = new Db.Drink("Thai Tea", 3.75,200, "test");
-        Db.Drink dr4 = new Db.Drink("Latte", 3.75, 300, "test");
+        Db.Drink dr2 = new Db.Drink("Mocha", 3.75, 100, "test");
+        Db.Drink dr3 = new Db.Drink("Thai Tea", 3.75,100, "test");
+        Db.Drink dr4 = new Db.Drink("Latte", 3.75, 100, "test");
         //ArrayList<Db.Drink> menu2 = new ArrayList<>();
         HashMap<String, Db.Drink> menu2 = new HashMap<>();
         menu2.put("Mocha",dr2);
         menu2.put("Thai Tea", dr3);
         menu2.put("Latte", dr4);
         //Db.Restaurant dbr2 = new Db.Restaurant("test2", 34.0256, -118.2859, menu2);
-        Db.Restaurant dbr2 = new Db.Restaurant("test2", 34.0256, -118.2859, menu2);
+        Db.Restaurant dbr2 = new Db.Restaurant("Hard_Coded_Sample_2", 34.0256, -118.2859, menu2);
         //Db.restaurant_list.add(dbr2);
         dbr2.getinfo();
-        Db.restaurant_map.put("test2", dbr2);
+        Db.restaurant_map.put("Hard_Coded_Sample_2", dbr2);
 
 
 
@@ -92,8 +93,9 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
                     .title(r.name)
                     .snippet(r.info)
             );
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latest));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latest, 10.0f));
         }
+
 
 
     }
@@ -119,6 +121,5 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
 
 
     }
-
 
 }

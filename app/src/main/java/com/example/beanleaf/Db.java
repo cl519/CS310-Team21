@@ -96,12 +96,11 @@ public class Db {
 
 
     public static class Drink{
-        Drink(String name, double price, double calories, String nutrition){
+        Drink(String name, double price, double caffeine, String nutrition){
             this.name = name;
             this.price = price;
-            this.calories = calories;
+            this.caffeine = caffeine;
             this.nutrition = nutrition;
-            this.caffeine = 100;
         }
         String name;
         double caffeine;
